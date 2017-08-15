@@ -1,0 +1,8 @@
+如何取得示意圖
+
+透過engine-rest/task取得
+processDefinitionId: "invoice:1:6e3dd33a-8158-11e7-808f-44bb20524153"
+taskDefinitionKey: "approveInvoice"
+
+engine-rest/process-definition/{processDefinitionId}/xml 取得
+bpmn.xml
