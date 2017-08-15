@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>Insert title here</title>
+<link rel="stylesheet" href="dist/assets/diagram-js.css" />
+<link rel="stylesheet" href="dist/assets/bpmn-font/css/bpmn-embedded.css" />
+<script src="jquery-3.2.1.min.js"></script>
+ <style>
+  html, body, #bodyaa {
+      height: 80%
+    }
+  .highlight:not(.djs-connection) .djs-visual > :nth-child(1) {
+      fill: green !important;
+    }
+  .highlight-overlay {
+      background-color: green; 
+      opacity: 0.4;
+      pointer-events: none; 
+    }   
+ </style>
+
+</head>
+<body>
+ <div id="bodyaa">
+ </div>
+ <script src="dist/bpmn-viewer.js"></script>
+
+<script>
+  // bundle exposes the viewer / modeler via the BpmnJS variable
+  
+var BpmnViewer = window.BpmnJS;
+var viewer = new BpmnViewer({
+	container : '#bodyaa'
+}); 
+	 $.getJSON("../engine-rest/process-definition/invoice:1:6e3dd33a-8158-11e7-808f-44bb20524153/xml",
+					function(data) {
+						
+						var xml = data.bpmn20Xml;// ADD BPMN 2.0 XML HERE
+						
+
+						viewer.importXML(xml, function(err) {
+
+							if (err) {
+								
+								
+							} else {
+								viewer.get('canvas').zoom('fit-viewport');
+								var canvas = viewer.get('canvas');
+								canvas.addMarker('approveInvoice', 'highlight');
+							}
+						});
+
+					});
+</script>
+</body>
+</html>
